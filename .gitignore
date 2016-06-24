@@ -18,3 +18,7 @@ LeetCodeScala.iml
 .idea/vcs.xml
 
 .idea/workspace.xml
+
+src-c/*.out
+
+.DS_Store
