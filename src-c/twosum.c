@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory.h>
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().
+ * 暴力算法, 效率应该是最低的
  */
 int* twoSum(int* nums, int numsSize, int target) {
     int i, j = 0;
@@ -23,9 +25,9 @@ int* twoSum(int* nums, int numsSize, int target) {
 
 
 int main (int argc, char** argv) {
-	int array[] = {2, 7, 11, 15};
+	int array[] = {0, 4, 3, 0};
     size_t n = sizeof(array)/sizeof(int);
-    int target = 9;
+    int target = 0;
 
     int* ret = twoSum(array, n, target);
     if (ret != NULL)
