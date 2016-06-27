@@ -10,5 +10,6 @@ object Main {
     println(s" Start LeetCodeScala For Scala")
     TwoSum.run()
     AddTwoNumbers.run()
+    LengthOfLongestSubstring.run()
   }
 }
