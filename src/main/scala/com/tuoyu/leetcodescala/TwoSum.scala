@@ -5,6 +5,14 @@ import scala.language.postfixOps
 /**
  * Created by tuoyu on 6/24/16.
  *  一次循环，获得结果
+  *
+  *
+  *  *  Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+  *  You may assume that each input would have exactly one solution.
+  *  Example:
+  *  Given nums = [2, 7, 11, 15], target = 9,
+  *  Because nums[0] + nums[1] = 2 + 7 = 9,
+  *  return [0, 1].
  */
 
 object TwoSum extends Executor {
@@ -17,7 +25,6 @@ object TwoSum extends Executor {
     targets.headOption
   }
 
-  override def name: String = "TwoSum"
   override def runImplement(): Unit = {
     val array1: Array[Int] = Array(2, 11, 7, 15)
     val array2: Array[Int] = Array(2, 11, 32, 4, 7, 7, 7, 43, 5)
