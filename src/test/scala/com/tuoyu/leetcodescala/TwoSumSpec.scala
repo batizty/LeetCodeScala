@@ -13,7 +13,7 @@ class TwoSumSpec extends FlatSpec with Matchers {
     val target1: Int = 10
 
     val result = TwoSum.twoSum(array2, target1)
-//    println(s"result = ${result}")
+    println(s"result = ${result}")
   }
 }
 
