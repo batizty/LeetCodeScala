@@ -8,3 +8,11 @@ src-c/*.out
 .DS_Store
 
 .idea_modules/*
+
+project/project/target/*
+
+project/target/*
+
+target/*
+
+projectFilesBackup/*
