@@ -5,20 +5,20 @@ package com.tuoyu.leetcodescala
   */
 import org.joda.time.DateTime
 
+
 trait Executor {
-  val runCount: Int = 100
+  val runCount: Int = 10000
   def name: String
   def runImplement(): Unit
   def run(): Unit = {
     println(s" Start ${name} Test")
-    val date_start: DateTime = DateTime.now()
-    for { i <- 0.to(runCount) } {
+    val start: Long = System.nanoTime()
+    (1 to runCount) foreach { i =>
       runImplement()
     }
-    val date_end: DateTime = DateTime.now()
-    val ms: Long = date_end.getMillis() - date_start.getMillis()
-    val run_time: Float = ms / runCount
+    val end: Long = System.nanoTime()
+    val ns: Long = (end - start) / 1000
 
-    println(s" Run ${name} Total Time = ${ms} ms Average Time = ${run_time} ms")
+    println(s" Run ${name} Test ${runCount} Timers Total Time = ${ns} ms Average Time = ${ns/runCount} ms")
   }
 }
