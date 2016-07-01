@@ -55,13 +55,12 @@ object FindMedianSortedArrays extends Executor {
   }
 
   def findKth(num1: Array[Int], num2: Array[Int], k: Int): Double = {
-//    println(s" num1.size = ${num1.size} num2.size = ${num2.size} k = $k")
-    if (num1.isEmpty)
+    if (num2.size < num1.size)
+      findKth(num2, num1, k)
+    else if (num1.isEmpty)
       num2(k - 1)
     else if (num2.isEmpty)
       num1(k - 1)
-    else if (num1.size < num2.size)
-      findKth(num2, num1, k)
     else if (k == 1)
       num1(0).min(num2(0))
     else {
