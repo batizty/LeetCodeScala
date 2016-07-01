@@ -12,5 +12,6 @@ object Main {
     TwoSum.run()
     AddTwoNumbers.run()
     LengthOfLongestSubstring.run()
+    FindMedianSortedArrays.run()
   }
 }
