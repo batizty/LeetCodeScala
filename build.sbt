@@ -2,7 +2,7 @@
 name := "LeetCodeScala"
 version := "0.0.1"
 scalaVersion := "2.11.8"
-sbtVersion := "0.13"
+sbtVersion := "0.13.11"
 
 
 resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
