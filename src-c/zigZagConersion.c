@@ -3,23 +3,7 @@
 #include <string.h>
 #include <math.h>
 
-int getPosition(int i, int row, int width) {
-    int sz = row * 2 - 2;
-    int u_index = i / sz;
-    int i_index = i % sz;
-    int x = i_index % row;
-    int y = 0;
-    if (i_index >= row) {
-        x = i_index + 1 - row;
-        y = i_index + 1 - row;
-    }
-    y = u_index * row + y - u_index;
-    int pos = x * width + y;
-    printf("i = %d u_idx = %d i_indx = %d x = %d y = %d pos = %d\n", i, u_index, i_index, x, y, pos);
-    return pos;
-}
-
-char* convert(char* s, int numRows) {
+/*char* convert(char* s, int numRows) {
     if (s == NULL || numRows <= 1)
         return s;
     int len = strlen( s );
@@ -27,20 +11,47 @@ char* convert(char* s, int numRows) {
         return s;
     int unit_sz = numRows * 2 - 2;
     int unit_count = floor(len / unit_sz);
-//    printf(" len = %d numRows = %d unit_sz = %d unit_count = %d\n", len, numRows, unit_sz, unit_count);
     int i = 0;
     char* result = (char *)malloc(sizeof(char) * unit_count * numRows * numRows );
+    printf(" unit_sz= %d unit_count= %d total =   \n", unit_sz, unit_sz);
 
     for (i = 0; i < unit_count * numRows * numRows - 1; i++)
-        result[ i ] = ' ';
+        result[ i ] = '_';
     result[ i ] = '\0';
     for (i = 1; i < numRows ; i++)
         result[ unit_count * numRows * i - 1 ] = '\n';
 
-    i = 0;
+     i = 0;
     while (i <= len) {
+        int pos = getPosition(i, numRows, numRows * unit_count );
+        printf(" pos = %d char = %c\n", pos, s[i]);
         result[ getPosition(i, numRows,  numRows * unit_count) ] = s[ i ];
         i++;
+    }
+
+    return result;
+}*/
+
+char* convert(char* s, int numRows) {
+    int len = strlen( s );
+    if (s == NULL || len <= 0 || numRows <= 0)
+        return "";
+    if (numRows == 1)
+        return s;
+
+    char* result = (char*)malloc(sizeof(char) * len);
+    result[ len - 1 ] = '\0';
+    int size = 2 * numRows - 2;
+    int idx = 0;
+
+    for (int i = 0; i < numRows; i++) {
+        for(int j = i; j < len; j = j + size) {
+            result[ idx++ ] = s[ j ];
+            int j2 = (j + size- 2 * i);
+            if (i != 0 && i != numRows - 1 && j2 < len ) {
+                result[ idx++ ] = s[j2];
+            }
+        }
     }
 
     return result;
@@ -48,10 +59,13 @@ char* convert(char* s, int numRows) {
 
 int main(int argc, char** argv) {
     char* s = "PAYPALISHIRING";
+    char* s1 = "ABCDEFGHTIJ";
     char* s2 = "";
     char* s3 = "twckwuyvbihajbmhmodminftgpdcbquupwflqfiunpuwtigfwjtgzzcfofjpydjnzqysvgmiyifrrlwpwpyvqadefmvfshsrxsltbxbziiqbvosufqpwsucyjyfbhauesgzvfdwnloojejdkzugsrksakzbrzxwudxpjaoyocpxhycrxwzrpllpwlsnkqlevjwejkfxmuwvsyopxpjmbuexfwksoywkhsqqevqtpoohpd";
-    char* r = convert(s, 14);
-    printf("\t original s = %s\n\t converted s = \n%s\n", s, r);
+    char* s4 = "Apalindromeisaword,phrase,number,orothersequenceofunitsthatcanbereadthesamewayineitherdirection,withgeneralallowancesforadjustmentstopunctuationandworddividers.";
+    printf("original s = %s\n", s4);
+    printf("converteds = %s\n", convert(s4, 2));
+
 
     return 0;
 }
