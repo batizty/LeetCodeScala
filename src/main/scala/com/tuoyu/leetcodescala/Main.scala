@@ -13,5 +13,6 @@ object Main {
     AddTwoNumbers.run()
     LengthOfLongestSubstring.run()
     FindMedianSortedArrays.run()
+    ZigZagConversion.run()
   }
 }

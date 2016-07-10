@@ -50,7 +50,7 @@ object FindMedianSortedArrays extends Executor {
         (findKth(nums1, nums2, total / 2) + findKth(nums1, nums2, total / 2 + 1)) / 2
       else
         findKth(nums1, nums2, total / 2 + 1)
-    println(s" findMedianSortedArrays ret = $ret ")
+//    println(s" findMedianSortedArrays ret = $ret ")
     ret
   }
 
