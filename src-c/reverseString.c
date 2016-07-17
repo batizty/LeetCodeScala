@@ -21,5 +21,6 @@ char*  reverseString(char *s) {
 void runReverseString() {
     char* s = "hello world";
     printf(" original str = %s\n", s);
-    printf(" reversed str = %s\n", reverseString(s));
+    char* s0 = reverseString(s);
+    printf(" reversed str = %s\n", s0);
 }
