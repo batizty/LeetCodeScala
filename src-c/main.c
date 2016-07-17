@@ -6,7 +6,7 @@
 
 
 int main(int argc, char** argv) {
-    // runReverseString();
+    runReverseString();
 
     return 0;
 }

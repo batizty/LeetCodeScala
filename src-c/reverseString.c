@@ -19,8 +19,10 @@ char*  reverseString(char *s) {
 }
 
 void runReverseString() {
+    printf("++++ RUN TEST %s ++++\n", __FUNCTION__ );
     char* s = "hello world";
     printf(" original str = %s\n", s);
-    char* s0 = reverseString(s);
-    printf(" reversed str = %s\n", s0);
+    // char* s0 = reverseString(s);
+    // printf(" reversed str = %s\n", s0);
+    return;
 }
