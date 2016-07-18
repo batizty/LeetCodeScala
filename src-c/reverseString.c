@@ -1,4 +1,4 @@
-#include "reverseString.h"
+#include "all_test.h"
 
 char*  reverseString(char *s) {
     int len = strlen( s );
@@ -18,8 +18,8 @@ char*  reverseString(char *s) {
     return s;
 }
 
-void runReverseString() {
-    printf("++++ RUN TEST %s ++++\n", __FUNCTION__ );
+void runReverseStringTest() {
+    printf("++++ RUN TEST %s ++++\n", __FUNCTION__);
     char* s = "hello world";
     printf(" original str = %s\n", s);
     // char* s0 = reverseString(s);
