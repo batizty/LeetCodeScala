@@ -16,3 +16,11 @@ project/target/*
 target/*
 
 projectFilesBackup/*
+
+src-c/*.out.dSYM
+
+src-c/*.out.dSYM/*
+
+*.plist
+
+src-c/*.dSYM/Contents
