@@ -11,7 +11,7 @@ int* twoSum(int* nums, int numsSize, int target) {
 	int* result = (int*)malloc(sizeof(int)*2);
 
 	for (i = 0; i < numsSize; i++ )
-		for (j = i + 1; j < numsSize; j++ ) { 
+		for (j = i + 1; j < numsSize; j++ ) {
 			if ( (nums[i] + nums[ j ]) == target ) {
 				result[ 0 ] = i;
 				result[ 1 ] = j;
@@ -20,7 +20,30 @@ int* twoSum(int* nums, int numsSize, int target) {
 		}
 
 	free( result );
-	return NULL; 
+	return NULL;
+}
+
+int* twoSum2(int* nums, int numsSize, int target) {
+    if (numsSize <= 2 || nums == NULL)
+        return NULL;
+
+    int* result = (int*)malloc(sizeof(int)*2);
+
+    int left = 0;
+    int right = numsSize - 1;
+    while (left < right) {
+        int sum = nums[left] + nums[right];
+        if (sum == target) {
+            result[ 0 ] = left;
+            result[ 1 ] = right;
+            return result;
+        }
+        else if (sum > target) {
+            right--;
+        } else
+            left++;
+    }
+	return NULL;
 }
 
 
@@ -35,5 +58,5 @@ int main (int argc, char** argv) {
     else
     	printf(" no result\n");
 
-	return 0; 
+	return 0;
 }
