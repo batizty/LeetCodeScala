@@ -8,4 +8,8 @@ void printfIntArray(int* array, int sz) {
         printf("\t%d", array[ i ] );
     printf("\n");
     return;
-    }
+}
+
+void printfTestInfo(char* test) {
+    printf(" ++++ Test %s ++++\n", test);
+}
