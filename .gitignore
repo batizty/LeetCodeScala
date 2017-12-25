@@ -25,5 +25,6 @@ src-c/*.out.dSYM/*
 
 src-c/*.dSYM/Contents
 
+cpp/src/build/*
 cpp/build/*
 *.o
