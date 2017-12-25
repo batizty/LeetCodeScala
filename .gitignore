@@ -24,3 +24,6 @@ src-c/*.out.dSYM/*
 *.plist
 
 src-c/*.dSYM/Contents
+
+cpp/build/*
+*.o
