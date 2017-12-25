@@ -1,0 +1,17 @@
+{
+	"files.associations": {
+		"__bit_reference": "cpp",
+		"__split_buffer": "cpp",
+		"__tree": "cpp",
+		"initializer_list": "cpp",
+		"iterator": "cpp",
+		"map": "cpp",
+		"string": "cpp",
+		"string_view": "cpp",
+		"vector": "cpp",
+		"typeinfo": "cpp",
+		"iosfwd": "cpp",
+		"__config": "cpp"
+	},
+	"C_Cpp.errorSquiggles": "Enabled"
+}
