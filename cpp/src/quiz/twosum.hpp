@@ -1,7 +1,9 @@
 /**
+ * LeetCode Problem 167
+ *  Two Sum II - Input Array is sorted
+ *  https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
  *
- *
- * author: tuouyu.zhang@gmail.com
+ * Author: tuouyu.zhang@gmail.com
  */
 
 #ifndef _TWOSUM_H_
