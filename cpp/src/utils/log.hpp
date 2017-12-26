@@ -8,75 +8,75 @@
 #define _LOG_H_
 
 #include <assert.h>
+#include <chrono>
+#include <ctime>
+#include <iomanip>
 #include <iostream>
 #include <map>
 #include <vector>
+
+#include "utils.hpp"
+
+enum LogLevel { INFO, DEBUG, ERROR };
 
 class Log {
 private:
   std::ostream *out;
   std::vector<std::string> header;
-  std::map<std::string, double> default_value;
-  std::map<std::string, double> value;
-  bool open = false;
+  char delimiter = '|';
+  LogLevel level = LogLevel::INFO;
+  std::map<LogLevel, std::string> levelPrefix;
 
 public:
-  Log(std::ostream *stream) {
+  Log(std::ostream *stream = &std::cout) {
     out = stream;
-    header.clear();
-    default_value.clear();
-    value.clear();
+    levelPrefix[LogLevel::INFO] = "INFO";
+    levelPrefix[LogLevel::DEBUG] = "DEBUG";
+    levelPrefix[LogLevel::ERROR] = "ERROR";
   }
 
-  void log(const std::string &field, double d) { value[field] = d; }
+  LogLevel setLevel(LogLevel l) { return level = l; }
+  char setDelimiter(char d) { return delimiter = d; }
+  void addHeaders(std::vector<std::string> headers) { header = headers; }
+  void addHeader(const std::string &h) { header.push_back(h); }
+  void prefix() {
+    // time part
+    std::chrono::system_clock::time_point now = currentTimePoint();
+    std::time_t now_t = std::chrono::system_clock::to_time_t(now);
 
-  void init() {
-    if (out != NULL) {
-      for (uint i = 0; i < header.size(); i++) {
-        *out << header[i];
-        if (i < (header.size() - 1)) {
-          *out << "\t";
-        } else {
-          *out << "\n";
-        }
-      }
-      out->flush();
+    *out << std::put_time(std::localtime(&now_t), "%F %T");
 
-      for (uint i = 0; i < header.size(); i++) {
-        value[header[i]] = default_value[header[i]];
-      }
-    } else {
-      throw "Not Init output stream";
+    // header
+    for (std::vector<std::string>::iterator iter = header.begin();
+         iter != header.end(); iter++) {
+      // for (auto hh : header) {
+      *out << delimiter;
+      *out << *iter;
+    }
+
+    *out << delimiter;
+  }
+
+  void output(const std::string &msg, const LogLevel level = LogLevel::INFO) {
+    prefix();
+    *out << levelPrefix[level] << delimiter << msg << "\n";
+    out->flush();
+  }
+
+  // output info level message
+  void info(const std::string &info) { output(info); }
+
+  // output debug level message
+  void debug(const std::string &debug) {
+    if (level >= LogLevel::DEBUG) {
+      output(debug, LogLevel::DEBUG);
     }
   }
 
-  void addField(const std::string &field, double dv) {
-    std::vector<std::string>::iterator iter =
-        std::find(header.begin(), header.end(), field);
-    if (iter != header.end()) {
-      throw "Field " + field + " Exsit already.";
-    }
-    header.push_back(field);
-    value[field] = dv;
-  }
-
-  void newLine() {
-    if (out != NULL) {
-      for (uint i = 0; i < header.size(); i++) {
-        *out << value[header[i]];
-        if (i < (header.size() - 1)) {
-          *out << "\t";
-        } else {
-          *out << "\n";
-        }
-      }
-      out->flush();
-
-      for (uint i = 0; i < header.size(); i++) {
-        value[header[i]] = default_value[header[i]];
-      }
-    } else {
-      throw "Not Init output stream";
+  // output error level message
+  void error(const std::string &err) {
+    if (level >= LogLevel::ERROR) {
+      output(err, LogLevel::ERROR);
     }
   }
 };

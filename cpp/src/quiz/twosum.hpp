@@ -26,42 +26,43 @@ public:
     size_t size = randomSizeT();
     vector<int> input = generateInputVector(size);
     int target = generateInputTarget();
-    cout << "  --- input ---" << endl;
-    cout << "    input vector : ";
-    outputVector(input);
-    cout << "    input target : " + to_string(target) << endl;
+    debug("--- input ---");
+    debug("    input vector : ");
+    debug(outputVector(input));
+    debug("    input target : " + to_string(target));
 
-    cout << "  --- result ---" << endl;
+    debug("  --- result ---");
     vector<int> result = twoSum(input, target);
     if (!result.empty()) {
-      cout << "    result vector : ";
-      outputVector(result);
+      debug("    result vector : ");
+      debug(outputVector(result));
     } else {
-      cout << "    no result" << endl;
+      debug("    no result");
     }
     return;
   }
 
-  void outputVector(vector<int> &list) {
+  std::string outputVector(vector<int> &list) {
+    std::string msg = "";
     if (list.size() > 0) {
-      cout << "[";
+      msg += "[";
       for (int i = 0; i < list.size(); i++) {
-        cout << list[i];
+        msg += std::to_string(list[i]);
         if (i != list.size() - 1) {
-          cout << ", ";
+          msg += ", ";
         }
       }
-      cout << "]";
-      cout << endl;
+      msg += "]";
     }
+    return msg;
   }
 
   std::string name() { return "twosum"; }
 
-  TwoSum() { init(); };
-  TwoSum(uint count) {
-    setRunningCount(count);
+  TwoSum() : Executor(1) { init(); };
+  TwoSum(uint count, LogLevel level = LogLevel::INFO) : Executor(count, level) {
     init();
+    addHeader(name());
   }
   ~TwoSum(){};
 
@@ -73,15 +74,14 @@ public:
     while (l < r) {
       int sum = numbers[l] + numbers[r];
       if (sum == target) {
-        cout << "number[" + to_string(l) + "](" + to_string(numbers[l]) +
-                    ") "
-                    " + "
-                    "number[" +
-                    to_string(r) + "](" + to_string(numbers[r]) +
-                    ")"
-                    " = target(" +
-                    to_string(target) + ")"
-             << endl;
+        debug("number[" + to_string(l) + "](" + to_string(numbers[l]) +
+              ") "
+              " + "
+              "number[" +
+              to_string(r) + "](" + to_string(numbers[r]) +
+              ")"
+              " = target(" +
+              to_string(target) + ")");
         return vector<int>{l + 1, r + 1};
       } else if (sum > target) {
         r--;

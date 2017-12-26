@@ -4,6 +4,7 @@
  */
 
 #include "quiz/twosum.hpp"
+#include "utils/utils.hpp"
 
 int main(int argc, char **argv) {
   TwoSum ts(100000);
